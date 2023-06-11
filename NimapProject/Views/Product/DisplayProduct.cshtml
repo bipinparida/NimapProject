@@ -1,0 +1,14 @@
+﻿@model NimapProject.Models.Product
+
+@{
+    ViewBag.Title = "DisplayProduct";
+}
+
+<h2 style="text-align:center;background-color:darkorange;color:black">Display Product</h2>
+<table border="1" align="center">
+    <tr><td>ProductId: @Model.ProductId</td></tr>
+    <tr><td>ProductName: @Model.ProductName</td></tr>
+    <tr><td>CategoryId: @Model.CategoryId</td></tr>
+    <tr><td>CategoryName: @Model.Category.CategoryName</td></tr>
+    <tr><td colspan="2" align="center">@Html.ActionLink("Back to Product Details", "DisplayProducts")</td></tr>
+</table>

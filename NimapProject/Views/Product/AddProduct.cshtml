@@ -1,0 +1,17 @@
+﻿@model NimapProject.Models.Product
+
+@{
+    ViewBag.Title = "AddProduct";
+}
+
+<h2 style="text-align:center;background-color:darkorange;color:black">Add New Product</h2> 
+@using (Html.BeginForm("AddProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>@Html.LabelFor(P => P.ProductName)<br />@Html.TextBoxFor(P => P.ProductName)</div>
+    <div>@Html.Label("Category Name")<br />@Html.DropDownList("CategoryId", "-Select Category-")</div>
+<div>
+    <input type="submit" value="Save" name="btnSave" />
+    <input type="reset" value="Reset" />
+</div>
+}
+ @Html.ActionLink("Back to Product Details", "DisplayProducts")

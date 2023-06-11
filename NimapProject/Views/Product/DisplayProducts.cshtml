@@ -1,0 +1,31 @@
+﻿@model IEnumerable<NimapProject.Models.Product>
+
+@{
+    ViewBag.Title = "DisplayProducts";
+}
+<h2 style="text-align:center;background-color:darkorange;color:black">Display Products</h2>
+<table border="1" align="center">
+    <tr>
+        <th style="color:green">@Html.DisplayNameFor(P => P.ProductId)</th>
+        <th style="color:green">@Html.DisplayNameFor(P => P.ProductName)</th>
+        <th style="color:green">@Html.DisplayNameFor(P => P.CategoryId)</th>
+        <th style="color:green">@Html.DisplayNameFor(P => P.Category.CategoryName)</th>
+        <th style="color:red">Actions</th>
+    </tr> @foreach (var Product in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(P => Product.ProductId)</td>
+            <td>@Html.DisplayFor(P => Product.ProductName)</td>
+            <td>@Html.DisplayFor(P => Product.CategoryId)</td>
+            <td>@Html.DisplayFor(P => Product.Category.CategoryName)</td>
+            <td>
+                @Html.ActionLink("View", "DisplayProduct", new { ProductId = Product.ProductId })
+                @Html.ActionLink("Edit", "EditProduct", new { ProductId = Product.ProductId })
+                @Html.ActionLink("Delete", "DeleteProduct", new { ProductId = Product.ProductId },
+                 new { onclick = "return confirm('Are you sure of deleting the record?')" })
+            </td>
+        </tr>
+    }
+    <tr><td colspan="9" align="center">@Html.ActionLink("Add New Product", "AddProduct")</td></tr>
+</table>
+

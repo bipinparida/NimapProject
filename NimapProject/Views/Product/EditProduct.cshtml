@@ -1,0 +1,17 @@
+﻿@model NimapProject.Models.Product
+
+@{
+    ViewBag.Title = "EditProduct";
+}
+
+<h2 style="text-align:center;background-color:darkorange;color:black">Update Product</h2>
+ @using (Html.BeginForm("UpdateProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+     <div>@Html.LabelFor(P => P.ProductId)<br />@Html.TextBoxFor(P => P.ProductId, new { @readonly = "true" })</div> 
+     <div>@Html.LabelFor(P => P.ProductName)<br />@Html.TextBoxFor(P => P.ProductName)</div> 
+     <div>@Html.LabelFor(P => P.CategoryId)<br />@Html.DropDownList("CategoryId")</div>
+<div>
+    <input type="submit" value="Update" name="btnUpdate" />
+    @Html.ActionLink("Cancel", "DisplayProducts")
+</div>
+}

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<NimapProject.Models.Category>
+
+@{
+    ViewBag.Title = "DisplayCategories";
+}
+
+<h2 style="text-align:center;background-color:lawngreen;color:blue">Categories List</h2>
+<table border="1" align="center">
+    <tr>
+        <th style="color:green">@Html.DisplayNameFor(C => C.CategoryId)</th>
+        <th style="color:green">@Html.DisplayNameFor(C => C.CategoryName)</th>
+        <th style="color:red">Actions</th>
+    </tr> @foreach (var Category in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(C => Category.CategoryId)</td>
+            <td>@Html.DisplayFor(C => Category.CategoryName)</td>
+            <td>
+                @Html.ActionLink("Edit", "EditCategory", new { CategoryId = Category.CategoryId }) 
+                @Html.ActionLink("Delete", "DeleteCategory", new { CategoryId = Category.CategoryId },
+                new { onclick = "return confirm('Are you sure of deleting the record?')" })
+            </td>
+        </tr>
+    }
+    <tr>
+    <td colspan="4" align="center">@Html.ActionLink("Add New Category", "AddCategory")</td></tr>
+</table>
+
