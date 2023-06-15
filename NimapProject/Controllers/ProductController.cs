@@ -5,17 +5,19 @@ using System.Web;
 using System.Data.Entity;
 using System.Web.Mvc;
 using NimapProject.Models;
+using PagedList.Mvc;
+using PagedList;
 
 namespace NimapProject.Controllers
 {
     public class ProductController : Controller
     {
         StoreDbContext dc = new StoreDbContext();
-        public ViewResult DisplayProducts()
+        public ViewResult DisplayProducts(int? i)
         {
             dc.Configuration.LazyLoadingEnabled = false;
-            var products=dc.Products.Include(P=>P.Category);
-            return View(products);
+            var products=dc.Products.Include(P=>P.Category).ToList();
+            return View(products.ToList().ToPagedList(i ?? 1,10));
         }
         public ViewResult DisplayProduct(int  productId)
         {

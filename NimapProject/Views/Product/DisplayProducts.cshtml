@@ -1,15 +1,19 @@
-﻿@model IEnumerable<NimapProject.Models.Product>
+﻿@model IPagedList<NimapProject.Models.Product>
 
 @{
     ViewBag.Title = "DisplayProducts";
 }
+
+@using PagedList.Mvc;
+@using PagedList;
+
 <h2 style="text-align:center;background-color:darkorange;color:black">Display Products</h2>
 <table border="1" align="center">
     <tr>
-        <th style="color:green">@Html.DisplayNameFor(P => P.ProductId)</th>
-        <th style="color:green">@Html.DisplayNameFor(P => P.ProductName)</th>
-        <th style="color:green">@Html.DisplayNameFor(P => P.CategoryId)</th>
-        <th style="color:green">@Html.DisplayNameFor(P => P.Category.CategoryName)</th>
+        <th style="color:green">@Html.DisplayNameFor(P => P.First().ProductId)</th>
+        <th style="color:green">@Html.DisplayNameFor(P => P.First().ProductName)</th>
+        <th style="color:green">@Html.DisplayNameFor(P => P.First().CategoryId)</th>
+        <th style="color:green">@Html.DisplayNameFor(P => P.First().Category.CategoryName)</th>
         <th style="color:red">Actions</th>
     </tr> @foreach (var Product in Model)
     {
@@ -25,7 +29,9 @@
                  new { onclick = "return confirm('Are you sure of deleting the record?')" })
             </td>
         </tr>
+
     }
     <tr><td colspan="9" align="center">@Html.ActionLink("Add New Product", "AddProduct")</td></tr>
 </table>
+<h4>@Html.PagedListPager(Model, i => Url.Action("DisplayProducts", "Product", new { i, search = Request.QueryString["search"] }))</h4>
 
